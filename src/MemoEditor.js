@@ -1,18 +1,43 @@
-export default function MemoEditor() {
-  const clickHandler = () => {
-    alert('save');
+import { useState } from 'react';
+
+export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
+  const [content, setContent] = useState(selectedMemo.content);
+
+  const complete = (id) => {
+    deleteMemo(selectedMemo.id);
   };
-  const clickHandler2 = () => {
-    alert('delete');
+
+  const saveClickHandler = () => {
+    saveMemo(selectedMemo.id, content);
   };
+
+  const handleChange = (event) => {
+    setContent(event.target.value);
+  };
+
   return (
     <>
       <div>
         <form>
-          <textarea rows="40" cols="60" />
+          <textarea
+            rows="40"
+            cols="60"
+            value={content}
+            onChange={handleChange}
+          />
           <br />
-          <button onClick={clickHandler}>保存</button>
-          <button onClick={clickHandler2}>削除</button>
+          <button
+            key={selectedMemo.id}
+            onClick={() => saveClickHandler(selectedMemo.id)}
+          >
+            保存
+          </button>
+          <button
+            key={selectedMemo.id}
+            onClick={() => complete(selectedMemo.id)}
+          >
+            削除
+          </button>
         </form>
       </div>
     </>
