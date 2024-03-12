@@ -1,14 +1,20 @@
 export default function MemoList({ memos, selectMemo, addNewMemo }) {
-  const cc = (id) => {
+  const handleSelectMemo = (id) => {
     selectMemo(id);
   };
+
+  function getFirstLine(content) {
+    return content.split('\n')[0];
+  }
 
   return (
     <div>
       {memos.map((memo) => {
         return (
           <div key={memo.id}>
-            <span onClick={() => cc(memo.id)}>{memo.content}</span>
+            <span onClick={() => handleSelectMemo(memo.id)}>
+              {getFirstLine(memo.content)}
+            </span>
           </div>
         );
       })}

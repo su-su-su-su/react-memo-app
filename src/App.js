@@ -2,24 +2,10 @@ import React from 'react';
 import MemoList from './MemoList';
 import MemoEditor from './MemoEditor';
 import { useState } from 'react';
-
-const MEMOS = [
-  {
-    content: 'メモ1',
-    id: 1
-  },
-  {
-    content: 'メモ2',
-    id: 2
-  },
-  {
-    content: 'メモ3',
-    id: 3
-  }
-];
+import './App.css';
 
 export default function App() {
-  const [memos, setMemos] = useState(MEMOS);
+  const [memos, setMemos] = useState(loadMemos());
   const [selectedMemo, setSelectedMemo] = useState(null);
 
   const selectMemo = (id) => {
@@ -27,35 +13,48 @@ export default function App() {
     setSelectedMemo(memo);
   };
 
-  const deleteMemo = (id) => {
-    const newMemos = memos.filter((memo) => {
-      return memo.id !== id;
-    });
-
-    setMemos(newMemos);
-  };
-
-  const saveMemo = (id, newContent) => {
-    const updatedMemos = memos.map((memo) =>
-      memo.id === id ? { ...memo, content: newContent } : memo
-    );
-    setMemos(updatedMemos);
-  };
+  function loadMemos() {
+    const memos = localStorage.getItem('memos');
+    if (memos) {
+      return JSON.parse(memos);
+    }
+    return [];
+  }
 
   const addNewMemo = () => {
     const newMemo = {
       id: Date.now(),
       content: ''
     };
-    setMemos([...memos, newMemo]);
+    const updatedMemos = [...memos, newMemo];
+    setMemos(updatedMemos);
     setSelectedMemo(newMemo);
+    localStorage.setItem('memos', JSON.stringify(updatedMemos));
+  };
+
+  const deleteMemo = (id) => {
+    const updatedMemos = memos.filter((memo) => memo.id !== id);
+    setMemos(updatedMemos);
+    localStorage.setItem('memos', JSON.stringify(updatedMemos));
+  };
+
+  const saveMemo = (id, content) => {
+    const updatedMemos = memos.map((memo) =>
+      memo.id === id ? { ...memo, content } : memo
+    );
+    setMemos(updatedMemos);
+    localStorage.setItem('memos', JSON.stringify(updatedMemos));
   };
 
   return (
-    <>
-      <h1>一覧</h1>
-      <MemoList memos={memos} selectMemo={selectMemo} addNewMemo={addNewMemo} />
-      <h1>編集</h1>
+    <div className="app-container">
+      <div className="memo-list-container">
+        <MemoList
+          memos={memos}
+          selectMemo={selectMemo}
+          addNewMemo={addNewMemo}
+        />
+      </div>
       {selectedMemo && (
         <MemoEditor
           deleteMemo={deleteMemo}
@@ -63,6 +62,6 @@ export default function App() {
           selectedMemo={selectedMemo}
         />
       )}
-    </>
+    </div>
   );
 }
