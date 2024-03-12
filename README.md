@@ -3,13 +3,21 @@
 シンプルなメモアプリで、ユーザーがメモを追加、編集、削除できる機能を提供します。メモはローカルストレージに保存されるため、ブラウザを閉じてもデータは保持されます。
 
 1. 作業PCの任意の作業ディレクトリにて git clone してください。
-   `git clone -b react-memo-app https://github.com/su-su-su-su/react-memo-app.git`
+
+   ```
+   git clone -b react-memo-app https://github.com/su-su-su-su/react-memo-app.git
+   ```
 
 2. npm installを実行してpackage.jsonの必要なパッケージをインストール
-   `npm install`
+
+   ```
+   npm install
+   ```
 
 3. アプリケーションを起動
-   `npm start`
+   ```
+   npm start
+   ```
 
 http://localhost:3000で起動します。
 
