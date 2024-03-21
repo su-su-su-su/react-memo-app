@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
 export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
   const [content, setContent] = useState(selectedMemo.content);
@@ -18,16 +19,23 @@ export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
   const handleChange = (event) => {
     setContent(event.target.value);
   };
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <div>
       <form>
         <textarea rows="40" cols="60" value={content} onChange={handleChange} />
         <br />
-        <button onClick={() => saveClickHandler(selectedMemo.id)}>保存</button>
-        <button onClick={() => deleteSelectedMemo(selectedMemo.id)}>
-          削除
-        </button>
+        {isLoggedIn && (
+          <button onClick={() => saveClickHandler(selectedMemo.id)}>
+            保存
+          </button>
+        )}
+        {isLoggedIn && (
+          <button onClick={() => deleteSelectedMemo(selectedMemo.id)}>
+            削除
+          </button>
+        )}
       </form>
     </div>
   );

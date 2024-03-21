@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { AuthContext } from './AuthContext';
+
 export default function MemoList({ memos, selectMemo, addNewMemo }) {
   const handleSelectMemo = (id) => {
     selectMemo(id);
   };
+
+  const { isLoggedIn } = useContext(AuthContext);
 
   function getFirstLine(content) {
     return content.split('\n')[0];
@@ -18,7 +23,7 @@ export default function MemoList({ memos, selectMemo, addNewMemo }) {
           </div>
         );
       })}
-      <button onClick={addNewMemo}>+</button>
+      {isLoggedIn && <button onClick={addNewMemo}>+</button>}
     </div>
   );
 }
