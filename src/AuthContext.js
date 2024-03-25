@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const clickHandler = () => {
-    setIsLoggedIn(isLoggedIn === true ? false : true);
+    setIsLoggedIn(!isLoggedIn);
   };
 
   return (
