@@ -5,6 +5,14 @@ import { useState } from 'react';
 import './App.css';
 import { AuthProvider } from './AuthContext';
 
+const loadMemos = () => {
+  const memos = localStorage.getItem('memos');
+  if (memos) {
+    return JSON.parse(memos);
+  }
+  return [];
+};
+
 export default function App() {
   const [memos, setMemos] = useState(loadMemos());
   const [selectedMemo, setSelectedMemo] = useState(null);
@@ -13,14 +21,6 @@ export default function App() {
     const memo = memos.find((memo) => memo.id === id);
     setSelectedMemo(memo);
   };
-
-  function loadMemos() {
-    const memos = localStorage.getItem('memos');
-    if (memos) {
-      return JSON.parse(memos);
-    }
-    return [];
-  }
 
   const addNewMemo = () => {
     const newMemo = {

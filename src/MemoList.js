@@ -7,9 +7,9 @@ export default function MemoList({ memos, selectMemo, addNewMemo }) {
 
   const { isLoggedIn } = useAuthContext();
 
-  function getFirstLine(content) {
+  const getFirstLine = (content) => {
     return content.split('\n')[0];
-  }
+  };
 
   return (
     <div>
