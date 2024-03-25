@@ -1,0 +1,7 @@
+.app-container {
+  display: flex;
+}
+
+.memo-list-container {
+  padding: 10px;
+}
