@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={{ isLoggedIn }}>
       <div>
         <button onClick={clickHandler}>
-          {isLoggedIn ? 'Logout' : 'Login'}
+          {isLoggedIn ? 'ログアウト' : 'ログイン'}
         </button>
       </div>
       {children}
