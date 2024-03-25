@@ -8,11 +8,11 @@ export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
     setContent(selectedMemo.content);
   }, [selectedMemo]);
 
-  const deleteSelectedMemo = () => {
+  const handleClickDelete = () => {
     deleteMemo(selectedMemo.id);
   };
 
-  const saveClickHandler = () => {
+  const handleClickSave = () => {
     saveMemo(selectedMemo.id, content);
   };
 
@@ -26,16 +26,8 @@ export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
       <form>
         <textarea rows="40" cols="60" value={content} onChange={handleChange} />
         <br />
-        {isLoggedIn && (
-          <button onClick={() => saveClickHandler(selectedMemo.id)}>
-            保存
-          </button>
-        )}
-        {isLoggedIn && (
-          <button onClick={() => deleteSelectedMemo(selectedMemo.id)}>
-            削除
-          </button>
-        )}
+        {isLoggedIn && <button onClick={handleClickSave}>保存</button>}
+        {isLoggedIn && <button onClick={handleClickDelete}>削除</button>}
       </form>
     </div>
   );
