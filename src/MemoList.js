@@ -3,9 +3,9 @@ export default function MemoList({ memos, selectMemo, addNewMemo }) {
     selectMemo(id);
   };
 
-  function getFirstLine(content) {
+  const getFirstLine = (content) => {
     return content.split('\n')[0];
-  }
+  };
 
   return (
     <div>
