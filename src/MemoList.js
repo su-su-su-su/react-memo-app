@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { AuthContext } from './AuthContext';
+import { useAuthContext } from './AuthContext';
 
 export default function MemoList({ memos, selectMemo, addNewMemo }) {
   const handleSelectMemo = (id) => {
     selectMemo(id);
   };
 
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useAuthContext();
 
   function getFirstLine(content) {
     return content.split('\n')[0];

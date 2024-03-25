@@ -1,16 +1,13 @@
-import { useState, createContext } from 'react';
+import { createContext, useContext } from 'react';
+import { useAuth } from './UseAuth';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const clickHandler = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  const { isLoggedIn, clickHandler } = useAuth();
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <AuthContext.Provider value={{ isLoggedIn, clickHandler }}>
       <div>
         <button onClick={clickHandler}>
           {isLoggedIn ? 'Logout' : 'Login'}
@@ -20,3 +17,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export const useAuthContext = () => useContext(AuthContext);
