@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const { isLoggedIn, clickHandler } = useAuth();
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, clickHandler }}>
+    <AuthContext.Provider value={{ isLoggedIn }}>
       <div>
         <button onClick={clickHandler}>
           {isLoggedIn ? 'Logout' : 'Login'}
