@@ -5,18 +5,18 @@ const AuthContext = createContext();
 const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const clickHandler = () => setIsLoggedIn(!isLoggedIn);
+  const HandleClick = () => setIsLoggedIn(!isLoggedIn);
 
-  return { isLoggedIn, clickHandler };
+  return { isLoggedIn, HandleClick };
 };
 
 export const AuthProvider = ({ children }) => {
-  const { isLoggedIn, clickHandler } = useAuth();
+  const { isLoggedIn, HandleClick } = useAuth();
 
   return (
     <AuthContext.Provider value={{ isLoggedIn }}>
       <div>
-        <button onClick={clickHandler}>
+        <button onClick={HandleClick}>
           {isLoggedIn ? 'ログアウト' : 'ログイン'}
         </button>
       </div>
