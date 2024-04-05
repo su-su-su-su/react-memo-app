@@ -1,7 +1,11 @@
+import { useAuth } from './useAuth';
+
 export default function MemoList({ memos, selectMemo, addNewMemo }) {
   const handleSelectMemo = (id) => {
     selectMemo(id);
   };
+
+  const { isLoggedIn } = useAuth();
 
   const getFirstLine = (content) => {
     return content.split('\n')[0];
@@ -18,7 +22,7 @@ export default function MemoList({ memos, selectMemo, addNewMemo }) {
           </div>
         );
       })}
-      <button onClick={addNewMemo}>+</button>
+      {isLoggedIn && <button onClick={addNewMemo}>+</button>}
     </div>
   );
 }

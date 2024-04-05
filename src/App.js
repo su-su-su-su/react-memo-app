@@ -3,6 +3,7 @@ import MemoList from './MemoList';
 import MemoEditor from './MemoEditor';
 import { useState } from 'react';
 import './App.css';
+import { AuthProvider } from './useAuth';
 
 const loadMemos = () => {
   const memos = localStorage.getItem('memos');
@@ -47,21 +48,23 @@ export default function App() {
   };
 
   return (
-    <div className="app-container">
-      <div className="memo-list-container">
-        <MemoList
-          memos={memos}
-          selectMemo={selectMemo}
-          addNewMemo={addNewMemo}
-        />
+    <AuthProvider>
+      <div className="app-container">
+        <div className="memo-list-container">
+          <MemoList
+            memos={memos}
+            selectMemo={selectMemo}
+            addNewMemo={addNewMemo}
+          />
+        </div>
+        {selectedMemo && (
+          <MemoEditor
+            deleteMemo={deleteMemo}
+            saveMemo={saveMemo}
+            selectedMemo={selectedMemo}
+          />
+        )}
       </div>
-      {selectedMemo && (
-        <MemoEditor
-          deleteMemo={deleteMemo}
-          saveMemo={saveMemo}
-          selectedMemo={selectedMemo}
-        />
-      )}
-    </div>
+    </AuthProvider>
   );
 }
