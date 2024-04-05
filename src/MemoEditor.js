@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuthContext } from './AuthContext';
+import { useAuthentication } from './UseAuth';
 
 export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
   const [content, setContent] = useState(selectedMemo.content);
@@ -19,7 +19,7 @@ export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
   const handleChange = (event) => {
     setContent(event.target.value);
   };
-  const { isLoggedIn } = useAuthContext();
+  const { isLoggedIn } = useAuthentication();
 
   return (
     <div>
