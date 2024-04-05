@@ -3,7 +3,7 @@ import MemoList from './MemoList';
 import MemoEditor from './MemoEditor';
 import { useState } from 'react';
 import './App.css';
-import { AuthProvider } from './UseAuth';
+import { AuthProvider } from './useAuth';
 
 const loadMemos = () => {
   const memos = localStorage.getItem('memos');

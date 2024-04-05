@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuthentication } from './UseAuth';
+import { useAuthentication } from './useAuth';
 
 export default function MemoEditor({ selectedMemo, deleteMemo, saveMemo }) {
   const [content, setContent] = useState(selectedMemo.content);

@@ -1,4 +1,4 @@
-import { useAuthentication } from './UseAuth';
+import { useAuthentication } from './useAuth';
 
 export default function MemoList({ memos, selectMemo, addNewMemo }) {
   const handleSelectMemo = (id) => {
