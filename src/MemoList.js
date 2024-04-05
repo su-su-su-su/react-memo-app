@@ -1,11 +1,11 @@
-import { useAuthentication } from './useAuth';
+import { useAuth } from './useAuth';
 
 export default function MemoList({ memos, selectMemo, addNewMemo }) {
   const handleSelectMemo = (id) => {
     selectMemo(id);
   };
 
-  const { isLoggedIn } = useAuthentication();
+  const { isLoggedIn } = useAuth();
 
   const getFirstLine = (content) => {
     return content.split('\n')[0];
